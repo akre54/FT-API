@@ -1,4 +1,6 @@
 FTApi::Application.routes.draw do
+  resources :transactions, except: :edit
+
   resources :farms, except: :edit
 
   resources :customers, except: :edit

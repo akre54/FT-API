@@ -1,3 +1,10 @@
 class Tab < ActiveRecord::Base
-  attr_accessible :balance
+  belongs_to :customers
+  attr_protected :balance
+
+  before_save :insert_transaction_record
+
+  def insert_transaction_record do
+    Transaction.new message: serialze balance.changes
+  end
 end
