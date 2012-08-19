@@ -4,7 +4,7 @@ class Tab < ActiveRecord::Base
 
   before_save :insert_transaction_record
 
-  def insert_transaction_record do
-    Transaction.new message: serialze balance.changes
+  def insert_transaction_record
+    Transaction.new(message: (serialze :balance.changes))
   end
 end
