@@ -82,8 +82,6 @@ ActiveRecord::Schema.define(:version => 20120802040051) do
     t.datetime "date_joined",                :null => false
   end
 
-  add_index "farms", ["email"], :name => "email", :unique => true
-
   create_table "inventories", :force => true do |t|
     t.integer "item_id",      :null => false
     t.string  "farm_id",      :null => false

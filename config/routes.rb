@@ -1,4 +1,8 @@
 FTApi::Application.routes.draw do
+  resources :farms, except: :edit
+
+  resources :customers, except: :edit
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -72,7 +72,7 @@ class SetupDb < ActiveRecord::Migration
 	   t.datetime "date_joined",                :null => false
 	 end
 
-	 add_index "farms", ["email"], :name => "email", :unique => true
+	 #add_index "farms", ["email"], :name => "email", :unique => true
 
 	 create_table "inventories", :force => true do |t|
 	   t.integer "item_id",      :null => false

@@ -6,14 +6,17 @@ gem 'rails', '3.2.6'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'rails-api'
-gem 'mysql2'
+
+group :production do
+  gem 'mysql2'
+end
 
 group :development, :test do
   gem 'pry'
   gem 'debugger-pry', require: 'debugger/pry'
   gem 'debugger'
-  gem 'sqlite3'
   gem 'rspec-rails'
+  gem 'pg'
 end
 
 
