@@ -11,12 +11,12 @@ class Customer < ActiveRecord::Base
   has_many :transactions
   has_and_belongs_to_many :farms
 
-  def setup_x_tab
+  def self.setup_x_tab
     Tab.find_or_create_by_farm_id(@current_farm.id)
   end
 
-  def balance
-    Tab.find_by_user_id_and_farm_id(self.id, @current_farm.id)
+  def self.balance
+    Tab.find_by_user_id_and_farm_id(@current_farm.id)
   end
 
 end
