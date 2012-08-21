@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120802040051) do
+ActiveRecord::Schema.define(:version => 20120821222001) do
 
   create_table "api_clients", :primary_key => "api_key", :force => true do |t|
     t.string "client_name", :null => false
@@ -28,19 +28,20 @@ ActiveRecord::Schema.define(:version => 20120802040051) do
   end
 
   create_table "customers", :force => true do |t|
-    t.string  "name",                        :null => false
-    t.integer "farm_id",                     :null => false
-    t.string  "email",                       :null => false
-    t.string  "pin",           :limit => 48, :null => false
-    t.string  "salt",          :limit => 15, :null => false
-    t.string  "phone",                       :null => false
-    t.string  "fb_id",                       :null => false
-    t.string  "fb_token",      :limit => 64, :null => false
-    t.string  "twitter_id",    :limit => 24, :null => false
-    t.string  "twitter_token", :limit => 64, :null => false
-    t.string  "fsq_id",                      :null => false
-    t.string  "fsq_token",     :limit => 64, :null => false
-    t.string  "img_url",                     :null => false
+    t.string   "name",                                        :null => false
+    t.string   "email",                       :default => "", :null => false
+    t.string   "crypted_pin",   :limit => 48,                 :null => false
+    t.string   "salt",          :limit => 15,                 :null => false
+    t.string   "phone",                       :default => "", :null => false
+    t.string   "fb_id",                       :default => "", :null => false
+    t.string   "fb_token",      :limit => 64, :default => "", :null => false
+    t.string   "twitter_id",    :limit => 24, :default => "", :null => false
+    t.string   "twitter_token", :limit => 64, :default => "", :null => false
+    t.string   "fsq_id",                      :default => "", :null => false
+    t.string   "fsq_token",     :limit => 64, :default => "", :null => false
+    t.string   "img_url",                     :default => "", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "customers", ["email"], :name => "email", :unique => true
@@ -66,20 +67,17 @@ ActiveRecord::Schema.define(:version => 20120802040051) do
   end
 
   create_table "farms", :force => true do |t|
-    t.string   "email",                      :null => false
-    t.string   "pass",         :limit => 48, :null => false
-    t.string   "salt",         :limit => 15, :null => false
-    t.string   "pin",                        :null => false
-    t.string   "farm_name",                  :null => false
-    t.string   "farm_address",               :null => false
-    t.string   "description",                :null => false
-    t.string   "website",                    :null => false
-    t.string   "contact",                    :null => false
-    t.string   "phone",                      :null => false
-    t.integer  "schedule",                   :null => false
-    t.float    "lat",                        :null => false
-    t.float    "long",                       :null => false
-    t.datetime "date_joined",                :null => false
+    t.string   "email",                                      :null => false
+    t.string   "pass",         :limit => 48,                 :null => false
+    t.string   "salt",         :limit => 15,                 :null => false
+    t.string   "pin",                        :default => "", :null => false
+    t.string   "farm_name",                                  :null => false
+    t.string   "farm_address",               :default => "", :null => false
+    t.string   "description",                :default => "", :null => false
+    t.string   "website",                    :default => "", :null => false
+    t.string   "phone",                      :default => "", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "inventories", :force => true do |t|
@@ -143,12 +141,13 @@ ActiveRecord::Schema.define(:version => 20120802040051) do
   add_index "tabs", ["farm_id", "customer_id"], :name => "UNIQUE", :unique => true
 
   create_table "transactions", :force => true do |t|
-    t.string   "receipt_dump", :null => false
+    t.string   "receipt_dump"
     t.string   "amount",       :null => false
     t.integer  "venue_id",     :null => false
     t.integer  "farm_id",      :null => false
     t.integer  "user_id",      :null => false
-    t.datetime "time",         :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "venues", :force => true do |t|
