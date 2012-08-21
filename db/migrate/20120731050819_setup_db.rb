@@ -135,7 +135,7 @@ class SetupDb < ActiveRecord::Migration
 	 add_index "tabs", ["farm_id", "user_id"], :name => "UNIQUE", :unique => true
 
 	 create_table "transactions", :force => true do |t|
-	   t.string    "receipt_dump", :null => false
+	   t.string    "receipt_dump"
 	   t.string    "amount",       :null => false
 	   t.integer   "venue_id",     :null => false
 	   t.integer   "farm_id",      :null => false
