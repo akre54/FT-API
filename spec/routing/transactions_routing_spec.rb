@@ -15,9 +15,10 @@ describe TransactionsController do
       get("/transactions/1").should route_to("transactions#show", :id => "1")
     end
 
-    it "routes to #edit" do
-      get("/transactions/1/edit").should route_to("transactions#edit", :id => "1")
-    end
+    # no need to be ediable yet
+    #it "routes to #edit" do
+    #  get("/transactions/1/edit").should route_to("transactions#edit", :id => "1")
+    #end
 
     it "routes to #create" do
       post("/transactions").should route_to("transactions#create")

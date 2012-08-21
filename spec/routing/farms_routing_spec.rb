@@ -15,9 +15,10 @@ describe FarmsController do
       get("/farms/1").should route_to("farms#show", :id => "1")
     end
 
-    it "routes to #edit" do
-      get("/farms/1/edit").should route_to("farms#edit", :id => "1")
-    end
+    # dont make editable yet
+    #it "routes to #edit" do
+    #  get("/farms/1/edit").should route_to("farms#edit", :id => "1")
+    #end
 
     it "routes to #create" do
       post("/farms").should route_to("farms#create")

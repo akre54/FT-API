@@ -15,9 +15,10 @@ describe CustomersController do
       get("/customers/1").should route_to("customers#show", :id => "1")
     end
 
-    it "routes to #edit" do
-      get("/customers/1/edit").should route_to("customers#edit", :id => "1")
-    end
+    # should it be editable?? 
+    #it "routes to #edit" do
+    #  get("/customers/1/edit").should route_to("customers#edit", :id => "1")
+    #end
 
     it "routes to #create" do
       post("/customers").should route_to("customers#create")
