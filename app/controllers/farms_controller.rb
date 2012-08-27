@@ -2,23 +2,7 @@ class FarmsController < ApplicationController
   # GET /farms
   # GET /farms.json
   def index
-    @farms = Farm.all
-
-    render json: @farms
-  end
-
-  # GET /farms/1
-  # GET /farms/1.json
-  def show
-    @farm = Farm.find(params[:id])
-
-    render json: @farm
-  end
-
-  # GET /farms/new
-  # GET /farms/new.json
-  def new
-    @farm = Farm.new
+    @farm = Farm.find(@current_farm.id)
 
     render json: @farm
   end

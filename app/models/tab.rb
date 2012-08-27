@@ -1,5 +1,5 @@
 class Tab < ActiveRecord::Base
-  belongs_to :customers
+  belongs_to :customer
   attr_protected :balance
 
   before_save :insert_transaction_record
