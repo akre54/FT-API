@@ -20,28 +20,17 @@ require 'spec_helper'
 
 describe FarmsController do
 
-  # This should return the minimal set of attributes required to create a valid
-  # Farm. As you add validations to Farm, be sure to
-  # update the return value of this method accordingly.
-  def valid_attributes
-    {
-      farm_name: "Old McDonalds",
-      email: "moo@oink.gov",
-      pass: "password",
-      salt: "haggis"
-    }
-  end
-
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # FarmsController. Be sure to keep this updated too.
   def valid_session
-    { auth: "yes" }
+    { auth: "yes", id: 2 }
   end
+
+  let(:farm) { FactoryGirl.create(:farm) }
 
   describe "GET index" do
     it "assigns all farms as @farms" do
-      farm = Farm.create! valid_attributes
       get :index, {}, valid_session
       assigns(:farms).should eq([farm])
     end
@@ -49,61 +38,15 @@ describe FarmsController do
 
   describe "GET show" do
     it "assigns the requested farm as @farm" do
-      farm = Farm.create! valid_attributes
       get :show, {:id => farm.to_param}, valid_session
       assigns(:farm).should eq(farm)
     end
   end
 
-  describe "GET new" do
-    it "assigns a new farm as @farm" do
-      get :new, {}, valid_session
-      assigns(:farm).should be_a_new(Farm)
-    end
-  end
-
   describe "GET edit" do
     it "assigns the requested farm as @farm" do
-      farm = Farm.create! valid_attributes
       get :edit, {:id => farm.to_param}, valid_session
       assigns(:farm).should eq(farm)
-    end
-  end
-
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Farm" do
-        expect {
-          post :create, {:farm => valid_attributes}, valid_session
-        }.to change(Farm, :count).by(1)
-      end
-
-      it "assigns a newly created farm as @farm" do
-        post :create, {:farm => valid_attributes}, valid_session
-        assigns(:farm).should be_a(Farm)
-        assigns(:farm).should be_persisted
-      end
-
-      it "redirects to the created farm" do
-        post :create, {:farm => valid_attributes}, valid_session
-        response.should redirect_to(Farm.last)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved farm as @farm" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Farm.any_instance.stub(:save).and_return(false)
-        post :create, {:farm => {}}, valid_session
-        assigns(:farm).should be_a_new(Farm)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Farm.any_instance.stub(:save).and_return(false)
-        post :create, {:farm => {}}, valid_session
-        response.should render_template("new")
-      end
     end
   end
 

@@ -2,9 +2,8 @@ class FarmsController < ApplicationController
   # GET /farms
   # GET /farms.json
   def index
-    @farm = Farm.find(@current_farm.id)
-
-    render json: @farm
+    @current_farm = Farm.find 2
+    render json: @current_farm
   end
 
   # POST /farms

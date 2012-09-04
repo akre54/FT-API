@@ -19,7 +19,8 @@ group :development, :test do
 
   # stubs and mocks
   gem 'factory_girl'
-  gem 'factory_girl_rails' '~> 4.0'
+  gem 'factory_girl_rails'
+  gem 'faker'
   gem 'pg'
 end
 
