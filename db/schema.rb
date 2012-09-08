@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120908030421) do
+ActiveRecord::Schema.define(:version => 20120908060703) do
 
   create_table "api_clients", :primary_key => "api_key", :force => true do |t|
     t.string "client_name", :null => false
@@ -98,9 +98,9 @@ ActiveRecord::Schema.define(:version => 20120908030421) do
   end
 
   create_table "tabs", :force => true do |t|
-    t.integer "farm_id",                                    :null => false
-    t.integer "customer_id",                                :null => false
-    t.decimal "balance",     :precision => 10, :scale => 2, :null => false
+    t.integer "farm_id",                                                     :null => false
+    t.integer "customer_id",                                                 :null => false
+    t.decimal "balance",     :precision => 10, :scale => 2, :default => 0.0, :null => false
   end
 
   add_index "tabs", ["farm_id", "customer_id"], :name => "UNIQUE", :unique => true
