@@ -3,7 +3,7 @@ class FarmsController < ApplicationController
   # GET /farms.json
   def index
     @current_farm = Farm.find 2 #NUR FUR TEST
-    render json: @current_farm
+    render "farms/show" 
   end
 
   # POST /farms
