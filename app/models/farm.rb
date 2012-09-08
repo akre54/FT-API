@@ -1,6 +1,14 @@
 class Farm < ActiveRecord::Base
   attr_accessible :email, :farm_name
+  attr_protected :pass, :salt
   validates_presence_of :email, :farm_name, :pass, :salt
   
-  has_many :customers
+  has_and_belongs_to_many :customers
+
+  def as_json(options={})
+    super(
+      only: [:email, :farm_name],
+      include: :customers
+    )
+  end
 end

@@ -5,19 +5,19 @@ class Customer < ActiveRecord::Base
   validates_presence_of :name, :crypted_pin, :salt, :email
   validates_uniqueness_of :email
 
-  after_save :setup_x_tab
-
-  has_many :tabs, :foreign_key => "user_id"
+  has_many :tabs, dependent: :destroy
   has_many :transactions
   has_and_belongs_to_many :farms
-
-  def self.balance
-    self.tabs.find_by_farm(@current_farm).balance
+  
+  def current_tab
+    self.tabs.find_or_create_by_farm_id 2
   end
 
-  private
-    def setup_x_tab
-      self.tabs.create(farm_id: @current_farm.id)
-    end
+  def balance
+    current_tab.balance
+  end
 
+  def as_json(options={})
+    super(only: [:name, :email, self.balance])
+  end
 end
