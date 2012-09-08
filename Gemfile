@@ -9,10 +9,7 @@ gem 'rails-api'
 gem 'rabl'
 
 gem 'heroku'
-
-group :production do
-  gem 'mysql2'
-end
+gem 'pg'
 
 group :development, :test do
   gem 'pry'
@@ -24,7 +21,6 @@ group :development, :test do
   gem 'factory_girl'
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'pg'
 end
 
 
