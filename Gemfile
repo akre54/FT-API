@@ -8,6 +8,8 @@ gem 'rails', '3.2.6'
 gem 'rails-api'
 gem 'rabl'
 
+gem 'heroku'
+
 group :production do
   gem 'mysql2'
 end
