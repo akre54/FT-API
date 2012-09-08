@@ -8,13 +8,18 @@ class Customer < ActiveRecord::Base
   has_many :tabs, dependent: :destroy
   has_many :transactions
   has_and_belongs_to_many :farms
-  
+
   def current_tab
     self.tabs.find_or_create_by_farm_id 2
   end
 
   def balance
     current_tab.balance
+  end
+
+  def balance=(newAmt)
+    current_tab.balance = newAmt
+    current_tab.balance.save!
   end
 
 end
