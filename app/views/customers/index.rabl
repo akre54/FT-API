@@ -1,3 +1,2 @@
-collection @customers
-attributes :id, :name, :email
-node(:balance) { |customer| customer.balance }
+collection @current_farm.customers 
+extends "customers/show"

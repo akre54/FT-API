@@ -2,8 +2,7 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    @customers = Customer.all
-
+    @current_farm = Farm.find 2 # NUR FUR TEST
     render "customers/index" 
   end
 
