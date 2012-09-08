@@ -17,9 +17,9 @@ class Customer < ActiveRecord::Base
     current_tab.balance
   end
 
+  # fix this
   def balance=(newAmt)
-    current_tab.balance = newAmt
-    current_tab.balance.save!
+    self.tabs.find_or_create_by_farm_id(2).balance = newAmt
   end
 
 end
