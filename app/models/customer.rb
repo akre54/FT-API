@@ -17,7 +17,4 @@ class Customer < ActiveRecord::Base
     current_tab.balance
   end
 
-  def as_json(options={})
-    super(only: [:name, :email, self.balance])
-  end
 end

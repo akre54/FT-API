@@ -4,7 +4,7 @@ class CustomersController < ApplicationController
   def index
     @customers = Customer.all
 
-    render json: @customers
+    render "customers/index" 
   end
 
   # GET /customers/1
@@ -12,7 +12,7 @@ class CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
 
-    render json: @customer
+    render "customers/show"
   end
 
   # GET /customers/new
@@ -20,7 +20,7 @@ class CustomersController < ApplicationController
   def new
     @customer = Customer.new
 
-    render json: @customer
+    render "customers/show"
   end
 
   # POST /customers
@@ -29,7 +29,7 @@ class CustomersController < ApplicationController
     @customer = Customer.new(params[:customer])
 
     if @customer.save
-      render json: @customer, status: :created, location: @customer
+      render "customer", status: :created, location: @customer
     else
       render json: @customer.errors, status: :unprocessable_entity
     end
