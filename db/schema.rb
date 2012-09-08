@@ -11,20 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120821222001) do
+ActiveRecord::Schema.define(:version => 20120908030421) do
 
   create_table "api_clients", :primary_key => "api_key", :force => true do |t|
     t.string "client_name", :null => false
-  end
-
-  create_table "customer_x_tab", :id => false, :force => true do |t|
-    t.integer "customer_id", :null => false
-    t.integer "tab_id",      :null => false
-  end
-
-  create_table "customer_x_transaction", :id => false, :force => true do |t|
-    t.integer "customer_id",    :null => false
-    t.integer "transaction_id", :null => false
   end
 
   create_table "customers", :force => true do |t|
@@ -46,24 +36,9 @@ ActiveRecord::Schema.define(:version => 20120821222001) do
 
   add_index "customers", ["email"], :name => "email", :unique => true
 
-  create_table "farm_x_customer", :id => false, :force => true do |t|
-    t.integer "farm_id",     :null => false
+  create_table "customers_farms", :id => false, :force => true do |t|
     t.integer "customer_id", :null => false
-  end
-
-  create_table "farm_x_inventory", :id => false, :force => true do |t|
-    t.integer "farm_id",      :null => false
-    t.integer "inventory_id", :null => false
-  end
-
-  create_table "farm_x_transaction", :id => false, :force => true do |t|
-    t.integer "farm_id",        :null => false
-    t.integer "transaction_id", :null => false
-  end
-
-  create_table "farm_x_venue", :id => false, :force => true do |t|
-    t.integer "farm_id",  :null => false
-    t.integer "venue_id", :null => false
+    t.integer "farm_id",     :null => false
   end
 
   create_table "farms", :force => true do |t|
@@ -85,16 +60,6 @@ ActiveRecord::Schema.define(:version => 20120821222001) do
     t.string  "farm_id",      :null => false
     t.string  "stock",        :null => false
     t.boolean "availability", :null => false
-  end
-
-  create_table "inventory_x_items", :id => false, :force => true do |t|
-    t.integer "inventory_id", :null => false
-    t.integer "items_id",     :null => false
-  end
-
-  create_table "inventory_x_venue", :id => false, :force => true do |t|
-    t.integer "inventory_id", :null => false
-    t.integer "venue_id",     :null => false
   end
 
   create_table "items", :force => true do |t|
