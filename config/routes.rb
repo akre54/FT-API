@@ -1,7 +1,7 @@
 FTApi::Application.routes.draw do
   resources :transactions, except: :edit
 
-  resources :farms, except: [:show, :edit]
+  resources :farms, except: [:show, :edit, :delete]
 
   resources :customers, except: :edit
 
@@ -55,6 +55,7 @@ FTApi::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
+  root to: 'farms#index'
 
   # See how all your routes lay out with "rake routes"
 
