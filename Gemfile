@@ -1,17 +1,20 @@
 source 'https://rubygems.org'
 
+#base
 gem 'rails', '3.2.6'
 gem 'rails-api'
-
-gem 'pg'
 gem 'thin'
+gem 'pg'
+gem 'rack-cors', :require => 'rack/cors'
 
+#views
 gem 'rabl'
 
+#deployment
 gem 'heroku'
 
 group :development, :test do
-  gem 'pry'
+  gem 'pry-rails'
   gem 'debugger-pry', require: 'debugger/pry'
   gem 'debugger'
   gem 'rspec-rails'
