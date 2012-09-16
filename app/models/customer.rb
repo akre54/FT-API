@@ -7,8 +7,6 @@ class Customer < ActiveRecord::Base
   has_many :farms, through: :tabs
   has_many :transactions, through: :tabs
 
-
-
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :name, presence: true,
