@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.6'
 gem 'rails-api'
 gem 'thin'
-gem 'pg'
 gem 'rack-cors', :require => 'rack/cors'
 
 #views
@@ -13,7 +12,12 @@ gem 'rabl'
 #deployment
 gem 'heroku'
 
+group :production do
+    gem 'pg'
+end
+
 group :development, :test do
+  gem 'sqlite3'
   gem 'pry-rails'
   gem 'debugger-pry', require: 'debugger/pry'
   gem 'debugger'
