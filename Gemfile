@@ -9,9 +9,6 @@ gem 'rack-cors', :require => 'rack/cors'
 #views
 gem 'rabl'
 
-#deployment
-gem 'heroku'
-
 group :production do
     gem 'pg'
 end
