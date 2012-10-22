@@ -1,5 +1,5 @@
 class Transaction < ActiveRecord::Base
-    attr_accessible: :amount
+    attr_accessible :amount
 
-    belongs_to: :farm, :customer, :venue
+    belongs_to :farm, :customer, :venue
 end
