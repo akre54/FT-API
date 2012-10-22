@@ -1,9 +1,11 @@
 FTApi::Application.routes.draw do
-  resources :transactions, except: :edit
+  resources :transactions, except: [:new, :edit]
 
   resources :farms, except: [:show, :edit, :delete]
 
-  resources :customers, except: :edit
+  resources :customers, except: :edit do
+    resources :transactions, except: [:edit, :delete]
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
