@@ -1,9 +1,9 @@
-class RemoveNullConstraintsFromVenue < ActiveRecord::Migration
+class ChangeTransactionAmountToFloat < ActiveRecord::Migration
   def up
-    change_column :transaction, :amount, :float, :null => false
+    change_column :transactions, :amount, :float, :null => false
   end
 
   def down
-    change_column :transaction, :amount, :string, :null => false
+    change_column :transactions, :amount, :string, :null => false
   end
 end
