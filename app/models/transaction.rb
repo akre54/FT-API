@@ -5,9 +5,11 @@ class Transaction < ActiveRecord::Base
     belongs_to :customer
     belongs_to :venue
 
-    after_save :update_balance
+    validates_numericality_of :amount
+
+    after_create :update_balance
 
     def update_balance
-        @customer.balance += @amount
+        self.customer.balance += self.amount
     end
 end

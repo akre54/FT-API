@@ -6,11 +6,11 @@ class Customer < ActiveRecord::Base
   validates_uniqueness_of :email
 
   has_and_belongs_to_many :farms
-  has_many :tabs, dependent: :destroy
+  has_many :tabs , dependent: :destroy
   has_many :transactions
 
   def current_tab
-    self.tabs.find_or_create_by_farm_id 2
+    self.tabs.find_by_farm_id 2
   end
 
   def balance
@@ -19,7 +19,7 @@ class Customer < ActiveRecord::Base
 
   # fix this
   def balance=(newAmt)
-    tab = self.tabs.find_or_create_by_farm_id 2
+    tab = self.tabs.find_by_farm_id 2
     tab.balance = newAmt
     tab.save!
   end
