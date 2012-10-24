@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121022024623) do
+ActiveRecord::Schema.define(:version => 20121024053100) do
 
   create_table "api_clients", :primary_key => "api_key", :force => true do |t|
     t.string "client_name", :null => false
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(:version => 20121022024623) do
     t.float    "amount",       :limit => 255, :null => false
     t.integer  "venue_id",                    :null => false
     t.integer  "farm_id",                     :null => false
-    t.integer  "user_id",                     :null => false
+    t.integer  "customer_id",                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
