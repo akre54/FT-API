@@ -2,8 +2,10 @@ class FarmsController < ApplicationController
   # GET /farms
   # GET /farms.json
   def index
-    @current_farm = Farm.find 2 #NUR FUR TEST
-    render "farms/show" 
+    session[:current_farm_id] = 2 #NUR FUR TEST
+    
+    @current_farm = current_farm
+    render "farms/show"
   end
 
   # POST /farms

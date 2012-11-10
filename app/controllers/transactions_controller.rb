@@ -26,7 +26,10 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.json
   def create
-    @transaction = Transaction.new(params[:transaction])
+    @transaction = Transaction.new
+    @transaction.customer_id = params[:customer_id]
+    @transaction.farm_id = @current_farm.id
+    @transaction.amount = params[:amount]
 
     if @transaction.save
       render json: @transaction, status: :created, location: @transaction
