@@ -27,8 +27,16 @@ class TransactionsController < ApplicationController
   # POST /transactions.json
   def create
     @transaction = Transaction.new
+
+
+    ##### nur fur test!
+    @transaction.venue_id = 1
+    session[:current_farm_id] = 2
+    #####
+
+
     @transaction.customer_id = params[:customer_id]
-    @transaction.farm_id = @current_farm.id
+    @transaction.farm_id = session[:current_farm_id]
     @transaction.amount = params[:amount]
 
     if @transaction.save
