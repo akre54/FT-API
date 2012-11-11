@@ -28,12 +28,7 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new
 
-
-    ##### nur fur test!
-    @transaction.venue_id = 1
-    session[:current_farm_id] = 2
-    #####
-
+    session[:current_farm_id] = 2 # NUR FUR TEST
 
     @transaction.customer_id = params[:customer_id]
     @transaction.farm_id = session[:current_farm_id]
