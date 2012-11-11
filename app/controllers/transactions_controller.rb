@@ -30,9 +30,10 @@ class TransactionsController < ApplicationController
 
     session[:current_farm_id] = 2 # NUR FUR TEST
 
-    @transaction.customer_id = params[:customer_id]
-    @transaction.farm_id = session[:current_farm_id]
-    @transaction.amount = params[:amount]
+    @transaction.farm_id          = session[:current_farm_id]
+    @transaction.customer_id      = params[:customer_id]
+    @transaction.transaction_type = params[:transaction_type]
+    @transaction.amount           = params[:amount]
 
     if @transaction.save
       render json: @transaction, status: :created, location: @transaction
