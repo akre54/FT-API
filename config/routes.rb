@@ -2,6 +2,7 @@ FTApi::Application.routes.draw do
   resources :transactions, except: [:new, :edit, :update]
 
   resources :farms, except: [:show, :edit, :delete]
+  match '/farms/me' => 'farms#show_current'
 
   resources :customers, except: :edit do
     resources :transactions, except: [:edit, :update, :delete]

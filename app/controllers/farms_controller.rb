@@ -2,8 +2,12 @@ class FarmsController < ApplicationController
   # GET /farms
   # GET /farms.json
   def index
+    show_current
+  end
+
+  def show_current
     session[:current_farm_id] = 2 #NUR FUR TEST
-    
+
     @current_farm = current_farm
     render "farms/show"
   end
