@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-
+    
     
     private
 

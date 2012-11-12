@@ -6,10 +6,10 @@ class FarmsController < ApplicationController
   end
 
   def show_current
-    session[:current_farm_id] = 2 #NUR FUR TEST
+    session[:current_farm_id] = 3 #NUR FUR TEST
 
     @current_farm = current_farm
-    render "farms/show"
+    render 'farms/show'
   end
 
   # POST /farms
@@ -19,7 +19,7 @@ class FarmsController < ApplicationController
     @current_farm = Farm.new(params[:farm])
 
     if @current_farm.save
-      render json: @current_farm, status: :created, location: @farm
+      render 'farms/show', status: :created, location: @farm
     else
       render json: @current_farm.errors, status: :unprocessable_entity
     end

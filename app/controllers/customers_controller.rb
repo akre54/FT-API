@@ -2,15 +2,14 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    @current_farm = Farm.find 2 # NUR FUR TEST
-    render "customers/index" 
+    @current_farm = current_farm
+    render "customers/index"
   end
 
   # GET /customers/1
   # GET /customers/1.json
   def show
     @customer = Customer.find(params[:id])
-
     render "customers/show"
   end
 
@@ -18,7 +17,6 @@ class CustomersController < ApplicationController
   # GET /customers/new.json
   def new
     @customer = Customer.new
-
     render "customers/show"
   end
 
@@ -26,9 +24,10 @@ class CustomersController < ApplicationController
   # POST /customers.json
   def create
     @customer = Customer.new(params[:customer])
+    @customer.farm_id = session[:current_farm_id]
 
     if @customer.save
-      render "customer", status: :created, location: @customer
+      render "customers/show", status: :created, location: @customer
     else
       render json: @customer.errors, status: :unprocessable_entity
     end

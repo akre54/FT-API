@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = Transaction.all
+    @transactions = Transaction.find_all_by_farm_id session[:current_farm_id]
 
     render 'transactions/index'
   end
@@ -10,9 +10,14 @@ class TransactionsController < ApplicationController
   # GET /transactions/1
   # GET /transactions/1.json
   def show
-    @transaction = Transaction.find(params[:id])
+    session[:current_farm_id] = 2
+    @transaction = Transaction.find_by_id_and_farm_id params[:id], session[:current_farm_id]
 
-    render json: @transaction
+    if @transaction
+      render 'transactions/show'
+    else
+      head :not_found
+    end
   end
 
   # GET /transactions/new
@@ -27,8 +32,6 @@ class TransactionsController < ApplicationController
   # POST /transactions.json
   def create
     @transaction = Transaction.new
-
-    session[:current_farm_id] = 2 # NUR FUR TEST
 
     @transaction.farm_id          = session[:current_farm_id]
     @transaction.customer_id      = params[:customer_id]

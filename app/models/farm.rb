@@ -3,7 +3,8 @@ class Farm < ActiveRecord::Base
   attr_protected :pass, :salt
   validates_presence_of :email, :farm_name, :pass, :salt
   
-  has_and_belongs_to_many :customers
+  has_many :tabs
+  has_many :customers, through: :tabs
   has_many :transactions, through: :customers
 
 end
