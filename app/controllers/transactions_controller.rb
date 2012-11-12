@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
   def index
     @transactions = Transaction.all
 
-    render json: @transactions
+    render 'transactions/index'
   end
 
   # GET /transactions/1
@@ -20,7 +20,7 @@ class TransactionsController < ApplicationController
   def new
     @transaction = Transaction.new
 
-    render json: @transaction
+    render 'transactions/show'
   end
 
   # POST /transactions
@@ -36,7 +36,7 @@ class TransactionsController < ApplicationController
     @transaction.amount           = params[:amount]
 
     if @transaction.save
-      render json: @transaction, status: :created, location: @transaction
+      render 'transactions/show', status: :created, location: @transaction
     else
       render json: @transaction.errors, status: :unprocessable_entity
     end
