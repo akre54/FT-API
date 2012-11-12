@@ -12,7 +12,7 @@ class Transaction < ActiveRecord::Base
     after_create :update_balance
 
     def update_balance
-        if self.type == 'deposit'
+        if self.transaction_type == 'deposit'
             self.customer.balance += self.amount
         else
             self.customer.balance -= self.amount
