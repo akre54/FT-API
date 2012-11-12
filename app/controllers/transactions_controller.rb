@@ -2,6 +2,7 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
+    session[:current_farm_id] = 2
     @transactions = Transaction.find_all_by_farm_id session[:current_farm_id]
 
     render 'transactions/index'
@@ -10,7 +11,7 @@ class TransactionsController < ApplicationController
   # GET /transactions/1
   # GET /transactions/1.json
   def show
-    session[:current_farm_id] = 2
+    session[:current_farm_id] = 2 # NUR FUR TEST
     @transaction = Transaction.find_by_id_and_farm_id params[:id], session[:current_farm_id]
 
     if @transaction
@@ -32,6 +33,8 @@ class TransactionsController < ApplicationController
   # POST /transactions.json
   def create
     @transaction = Transaction.new
+
+    session[:current_farm_id] = 2 # NUR FUR TEST
 
     @transaction.farm_id          = session[:current_farm_id]
     @transaction.customer_id      = params[:customer_id]
