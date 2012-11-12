@@ -30,12 +30,12 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.json
   def create
-    @transaction = Transaction.new(
-      farm_id:          session[:current_farm_id]
-      customer_id:      params[:customer_id]
-      transaction_type: params[:transaction_type]
-      amount:           params[:amount]
-    )
+    @transaction = Transaction.new do |t|
+      t.farm_id          = session[:current_farm_id]
+      t.customer_id      = params[:customer_id]
+      t.transaction_type = params[:transaction_type]
+      t.amount           = params[:amount]
+    end
 
     if @transaction.save
       render 'transactions/show', status: :created, location: @transaction
