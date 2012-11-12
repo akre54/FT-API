@@ -6,7 +6,6 @@ class FarmsController < ApplicationController
   end
 
   def show_current
-    session[:current_farm_id] = 3 #NUR FUR TEST
 
     @current_farm = current_farm
     render 'farms/show'
