@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = Transaction.find_all_by_farm_id session[:current_farm_id]
+    @transactions = Transaction.find_all_by_farm_id current_farm.id
 
     render 'transactions/index'
   end
@@ -10,7 +10,7 @@ class TransactionsController < ApplicationController
   # GET /transactions/1
   # GET /transactions/1.json
   def show
-    @transaction = Transaction.find_by_id_and_farm_id params[:id], session[:current_farm_id]
+    @transaction = Transaction.find params[:id]
 
     if @transaction
       render 'transactions/show'
@@ -30,14 +30,13 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.json
   def create
-    @transaction = Transaction.new do |t|
-      t.farm_id          = session[:current_farm_id]
-      t.customer_id      = params[:customer_id]
-      t.transaction_type = params[:transaction_type]
-      t.amount           = params[:amount]
-    end
+    @transaction = Transaction.new
+    @transaction.transaction_type = params[:transaction_type]
+    @transaction.amount           = params[:amount]
 
-    if @transaction.save
+    @tab = Tab.find_by_farm_id_and_customer_id(current_farm.id, params[:customer_id])
+
+    if @tab << @transaction
       render 'transactions/show', status: :created, location: @transaction
     else
       render json: @transaction.errors, status: :unprocessable_entity

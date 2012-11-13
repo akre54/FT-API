@@ -5,11 +5,13 @@ class Customer < ActiveRecord::Base
   validates_presence_of :name, :crypted_pin, :salt, :email
   validates_uniqueness_of :email
 
-  belongs_to :farm
+  #belongs_to :farm
   has_many :tabs , dependent: :destroy
   has_many :farms, through: :tabs
-  has_many :transactions
+  has_many :transactions, through: :tabs
 
+
+=begin
   def balance
     tab = self.tabs.find_by_farm_id 2
     tab.balance
@@ -21,4 +23,5 @@ class Customer < ActiveRecord::Base
     tab.balance = newAmt
     tab.save!
   end
+=end
 end
