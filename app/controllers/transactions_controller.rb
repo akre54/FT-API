@@ -36,7 +36,7 @@ class TransactionsController < ApplicationController
 
     @tab = Tab.find_by_farm_id_and_customer_id(current_farm.id, params[:customer_id])
 
-    if @tab << @transaction
+    if @tab.transactions << @transaction
       render 'transactions/show', status: :created, location: @transaction
     else
       render json: @transaction.errors, status: :unprocessable_entity
