@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = Transaction.find_all_by_farm_id current_farm.id
+    @transactions = Tab.find_all_by_farm_id(current_farm.id).map(&:transactions).flatten
 
     render 'transactions/index'
   end
