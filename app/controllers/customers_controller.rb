@@ -10,6 +10,7 @@ class CustomersController < ApplicationController
   # GET /customers/1.json
   def show
     @customer = Customer.find(params[:id])
+    @current_farm = current_farm
     render "customers/show"
   end
 
