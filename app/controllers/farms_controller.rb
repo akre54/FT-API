@@ -6,7 +6,6 @@ class FarmsController < ApplicationController
   end
 
   def show_current
-
     @current_farm = current_farm
     render 'farms/show'
   end
