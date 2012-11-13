@@ -23,10 +23,14 @@ class CustomersController < ApplicationController
   # POST /customers
   # POST /customers.json
   def create
-    @customer = Customer.new(params[:customer])
-    @customer.farm_id = session[:current_farm_id]
+    @customer = Customer.new
 
-    if @customer.save
+    @customer.name = params[:name]
+    @customer.email = params[:email]
+    @customer.crypted_pin = params[:pin] # do something with this
+    @customer.salt = 'hagg1s' # do something with this
+
+    if current_farm.customers << @customer
       render "customers/show", status: :created, location: @customer
     else
       render json: @customer.errors, status: :unprocessable_entity
