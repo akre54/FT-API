@@ -3,7 +3,6 @@ class MakeTransactionBelongToTab < ActiveRecord::Migration
     add_column :transactions, :tab_id, :integer
 
     Transaction.all.each do |t|
-        debugger
         t.tab = Tab.find_by_customer_id_and_farm_id(t.customer_id, t.farm_id)
     end
 
