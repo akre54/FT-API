@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121113161232) do
+ActiveRecord::Schema.define(:version => 20121116213817) do
 
   create_table "api_clients", :primary_key => "api_key", :force => true do |t|
     t.string "client_name", :null => false
@@ -108,7 +108,9 @@ ActiveRecord::Schema.define(:version => 20121113161232) do
     t.decimal "balance",     :precision => 10, :scale => 2, :default => 0.0, :null => false
   end
 
+  add_index "tabs", ["customer_id"], :name => "index_tabs_on_customer_id"
   add_index "tabs", ["farm_id", "customer_id"], :name => "UNIQUE", :unique => true
+  add_index "tabs", ["farm_id"], :name => "index_tabs_on_farm_id"
 
   create_table "transactions", :force => true do |t|
     t.string   "receipt_dump"
@@ -119,6 +121,8 @@ ActiveRecord::Schema.define(:version => 20121113161232) do
     t.string   "transaction_type"
     t.integer  "tab_id"
   end
+
+  add_index "transactions", ["tab_id"], :name => "index_transactions_on_tab_id"
 
   create_table "venues", :force => true do |t|
     t.string "venue_name",    :null => false
