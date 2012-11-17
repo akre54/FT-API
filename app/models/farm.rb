@@ -5,7 +5,7 @@ class Farm < ActiveRecord::Base
 
   before_save { |farm| farm.email = email.downcase }
   
-  has_many :tabs
+  has_many :tabs, dependent: :destroy
   has_many :customers, through: :tabs
   has_many :transactions, through: :customers
 

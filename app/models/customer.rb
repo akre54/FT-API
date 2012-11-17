@@ -2,7 +2,7 @@ class Customer < ActiveRecord::Base
   attr_accessible :name, :email
   attr_protected :crypted_pin
 
-  has_many :tabs , dependent: :destroy
+  has_many :tabs, dependent: :destroy
   has_many :farms, through: :tabs
   has_many :transactions, through: :tabs
 
