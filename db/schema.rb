@@ -11,43 +11,45 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121116213817) do
+ActiveRecord::Schema.define(:version => 20130114072229) do
 
   create_table "api_clients", :primary_key => "api_key", :force => true do |t|
     t.string "client_name", :null => false
   end
 
   create_table "customers", :force => true do |t|
-    t.string   "name",                                        :null => false
-    t.string   "email",                       :default => "", :null => false
-    t.string   "crypted_pin",   :limit => 48,                 :null => false
-    t.string   "salt",          :limit => 15,                 :null => false
-    t.string   "phone",                       :default => "", :null => false
-    t.string   "fb_id",                       :default => "", :null => false
-    t.string   "fb_token",      :limit => 64, :default => "", :null => false
-    t.string   "twitter_id",    :limit => 24, :default => "", :null => false
-    t.string   "twitter_token", :limit => 64, :default => "", :null => false
-    t.string   "fsq_id",                      :default => "", :null => false
-    t.string   "fsq_token",     :limit => 64, :default => "", :null => false
-    t.string   "img_url",                     :default => "", :null => false
+    t.string   "name",                                          :null => false
+    t.string   "email",                         :default => "", :null => false
+    t.string   "password_hash",   :limit => 48,                 :null => false
+    t.string   "password_salt",   :limit => 15,                 :null => false
+    t.string   "phone",                         :default => "", :null => false
+    t.string   "fb_id",                         :default => "", :null => false
+    t.string   "fb_token",        :limit => 64, :default => "", :null => false
+    t.string   "twitter_id",      :limit => 24, :default => "", :null => false
+    t.string   "twitter_token",   :limit => 64, :default => "", :null => false
+    t.string   "fsq_id",                        :default => "", :null => false
+    t.string   "fsq_token",       :limit => 64, :default => "", :null => false
+    t.string   "img_url",                       :default => "", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_digest"
   end
 
   add_index "customers", ["email"], :name => "email", :unique => true
 
   create_table "farms", :force => true do |t|
-    t.string   "email",                                      :null => false
-    t.string   "pass",         :limit => 48,                 :null => false
-    t.string   "salt",         :limit => 15,                 :null => false
-    t.string   "pin",                        :default => "", :null => false
-    t.string   "farm_name",                                  :null => false
-    t.string   "farm_address",               :default => "", :null => false
-    t.string   "description",                :default => "", :null => false
-    t.string   "website",                    :default => "", :null => false
-    t.string   "phone",                      :default => "", :null => false
+    t.string   "email",                                         :null => false
+    t.string   "password_hash",   :limit => 48,                 :null => false
+    t.string   "password_salt",   :limit => 15,                 :null => false
+    t.string   "pin",                           :default => "", :null => false
+    t.string   "farm_name",                                     :null => false
+    t.string   "farm_address",                  :default => "", :null => false
+    t.string   "description",                   :default => "", :null => false
+    t.string   "website",                       :default => "", :null => false
+    t.string   "phone",                         :default => "", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_digest"
   end
 
   create_table "inventories", :force => true do |t|
