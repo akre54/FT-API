@@ -1,12 +1,17 @@
 source 'https://rubygems.org'
 
-#base
+# base
 gem 'rails', '3.2.11'
 gem 'rails-api'
 gem 'thin'
+
+# for cross-origin requests (m.ft.com --> api.ft.com)
 gem 'rack-cors', :require => 'rack/cors'
 
-#views
+# for ActiveModel has_secure_password
+gem 'bcrypt-ruby', '~> 3.0.0'
+
+# views
 gem 'rabl'
 
 group :production do
@@ -18,6 +23,8 @@ group :development, :test do
   gem 'pry-rails'
   gem 'debugger-pry', require: 'debugger/pry'
   gem 'debugger'
+
+  # testing
   gem 'rspec-rails'
 
   # stubs and mocks
@@ -25,19 +32,3 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
 end
-
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano', :group => :development
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
