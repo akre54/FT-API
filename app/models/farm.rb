@@ -24,5 +24,6 @@ class Farm < ActiveRecord::Base
                        length: { within: 5..255 },
                        on: :create
 
+  validates_presence_of :password_confirmation, :if => :password_changed?
 
 end
