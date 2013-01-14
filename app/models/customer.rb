@@ -1,15 +1,29 @@
 class Customer < ActiveRecord::Base
-  attr_accessible :name, :email
-  attr_protected :crypted_pin
+  attr_accessible :name, :email, :password, :password_confirmation
+
+  has_secure_password
 
   has_many :tabs, dependent: :destroy
   has_many :farms, through: :tabs
   has_many :transactions, through: :tabs
 
-  validates_presence_of :name, :crypted_pin, :salt, :email
-  validates_uniqueness_of :email
 
-  before_save { |customer| customer.email = email.downcase }
+
+  email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  validates :name, presence: true,
+                   uniqueness: true,
+                   length: { within: 1..32 }
+
+  validates :email, presence: true,
+                    uniqueness: true,
+                    length: { maximum: 255 },
+                    format: { with: email_regex }
+
+  validates :password, presence: true,
+                       length: { within: 5..255 },
+                       on: :create
+
 
 =begin
   def balance
