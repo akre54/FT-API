@@ -6,9 +6,14 @@ class Transaction < ActiveRecord::Base
   delegate :farm, to: :tab
   delegate :customer, to: :tab
 
-  validates_presence_of :amount, :transaction_type
-  validates_numericality_of :amount, greater_than_or_equal_to: 0
-  validates_inclusion_of :transaction_type, in: %w(deposit withdrawal)
+  validates :transaction_type, presence: true
+
+  validates :amount, presence: true,
+                     numericality: { greater_than_or_equal_to: 0 }
+
+  validates :transaction_type, inclusion: { in: %w(deposit withdrawal),
+                      message: "Transaction type must be either withdrawal or deposit" }
+
   validate :negative_validator
 
   after_create :update_balance
