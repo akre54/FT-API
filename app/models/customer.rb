@@ -27,17 +27,16 @@ class Customer < ActiveRecord::Base
   validates_presence_of :password_confirmation, :if => :password_changed?
 
 
-=begin
-  def balance
-    tab = self.tabs.find_by_farm_id 2
+  # delegate balance to the current tab (relative to farm)
+  def balance(farm)
+    tab = self.tabs.find_by_farm_id farm
     tab.balance
   end
 
   # fix this (scope maybe?)
-  def balance=(newAmt)
-    tab = self.tabs.find_by_farm_id 2
+  def balance=(newAmt, farm)
+    tab = self.tabs.find_by_farm_id farm
     tab.balance = newAmt
     tab.save!
   end
-=end
 end
