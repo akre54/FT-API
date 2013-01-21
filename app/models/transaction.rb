@@ -23,7 +23,7 @@ class Transaction < ActiveRecord::Base
   end
 
   def negative_validator
-    if transaction_type == 'withdrawal' and amount > self.tab.balance
+    if transaction_type == 'withdrawal' and amount > self.customer.balance
       errors.add(:amount, 'cannot be more than customer balance')
     end
   end
