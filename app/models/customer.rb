@@ -34,7 +34,7 @@ class Customer < ActiveRecord::Base
   end
 
   # fix this (scope maybe?)
-  def balance=(newAmt, farm)
+  def set_balance(newAmt, farm)
     tab = self.tabs.find_by_farm_id farm
     tab.balance = newAmt
     tab.save!
