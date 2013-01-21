@@ -14,7 +14,7 @@ class Transaction < ActiveRecord::Base
   after_create :update_balance
 
   def update_balance
-    bal = self.customer.balance
+    bal = self.customer.balance self.farm
     if self.transaction_type == 'deposit'
       self.customer.set_balance(bal + self.amount, self.farm)
     else
@@ -23,7 +23,7 @@ class Transaction < ActiveRecord::Base
   end
 
   def negative_validator
-    if transaction_type == 'withdrawal' and amount > self.customer.balance
+    if transaction_type == 'withdrawal' and amount > self.customer.balance(self.farm)
       errors.add(:amount, 'cannot be more than customer balance')
     end
   end
