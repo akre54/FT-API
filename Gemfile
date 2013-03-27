@@ -15,7 +15,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'rabl'
 
 group :production do
-    gem 'pg'
+  gem 'pg'
 end
 
 group :development, :test do
