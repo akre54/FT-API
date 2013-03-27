@@ -19,11 +19,12 @@ group :production do
 end
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'pry-rails'
   gem 'debugger-pry', require: 'debugger/pry'
   gem 'debugger'
+end
 
+group :test do
   # testing
   gem 'rspec-rails'
 
