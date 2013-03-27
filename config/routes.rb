@@ -2,11 +2,16 @@ FTApi::Application.routes.draw do
   resources :transactions, except: [:new, :edit, :update]
 
   resources :farms, except: [:show, :edit, :delete]
-  match '/farms/me' => 'farms#show_current'
 
   resources :customers, except: :edit do
     resources :transactions, except: [:edit, :update, :delete]
   end
+
+  resources :sessions
+
+  get '/farms/me' => 'farms#show_current', as: 'my_farm'
+  get 'log_in' => 'sessions#new', as: 'log_in'
+  get 'log_out' => 'sessions#destroy', as: 'log_out'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
