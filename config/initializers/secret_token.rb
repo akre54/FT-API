@@ -13,7 +13,12 @@ if ENV["SECRET_TOKEN"].blank?
     ENV["SECRET_TOKEN"] = FTApi::Application.config.secret_token = SecureRandom.hex(30)
   else
     config_file = File.expand_path(File.join(Rails.root, '/config/config.yml'))
-    config = YAML.load_file(config_file)
+    if File.exists?(config_file)
+      config =  YAML.load_file(config_file)
+    else
+      config = {}
+      config[Rails.env] = {}
+    end
     # Generate the key, set it for the current environment, update the yaml file and move on
     ENV["SECRET_TOKEN"] = config[Rails.env]['SECRET_TOKEN'] = SecureRandom.hex(30)
     File.open(config_file, 'w') { |file| file.write(config.to_yaml) }
