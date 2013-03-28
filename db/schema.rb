@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130114072229) do
+ActiveRecord::Schema.define(:version => 20130328032550) do
 
   create_table "api_clients", :primary_key => "api_key", :force => true do |t|
     t.string "client_name", :null => false
@@ -20,8 +20,6 @@ ActiveRecord::Schema.define(:version => 20130114072229) do
   create_table "customers", :force => true do |t|
     t.string   "name",                                          :null => false
     t.string   "email",                         :default => "", :null => false
-    t.string   "password_hash",   :limit => 48,                 :null => false
-    t.string   "password_salt",   :limit => 15,                 :null => false
     t.string   "phone",                         :default => "", :null => false
     t.string   "fb_id",                         :default => "", :null => false
     t.string   "fb_token",        :limit => 64, :default => "", :null => false
@@ -38,15 +36,13 @@ ActiveRecord::Schema.define(:version => 20130114072229) do
   add_index "customers", ["email"], :name => "email", :unique => true
 
   create_table "farms", :force => true do |t|
-    t.string   "email",                                         :null => false
-    t.string   "password_hash",   :limit => 48,                 :null => false
-    t.string   "password_salt",   :limit => 15,                 :null => false
-    t.string   "pin",                           :default => "", :null => false
-    t.string   "farm_name",                                     :null => false
-    t.string   "farm_address",                  :default => "", :null => false
-    t.string   "description",                   :default => "", :null => false
-    t.string   "website",                       :default => "", :null => false
-    t.string   "phone",                         :default => "", :null => false
+    t.string   "email",                           :null => false
+    t.string   "pin",             :default => "", :null => false
+    t.string   "farm_name",                       :null => false
+    t.string   "farm_address",    :default => "", :null => false
+    t.string   "description",     :default => "", :null => false
+    t.string   "website",         :default => "", :null => false
+    t.string   "phone",           :default => "", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
