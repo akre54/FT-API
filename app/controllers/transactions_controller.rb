@@ -1,6 +1,5 @@
 class TransactionsController < ApplicationController
   # GET /transactions
-  # GET /transactions.json
   def index
     @transactions = Tab.find_all_by_farm_id(current_farm.id).map(&:transactions).flatten
 
@@ -8,19 +7,17 @@ class TransactionsController < ApplicationController
   end
 
   # GET /transactions/1
-  # GET /transactions/1.json
   def show
     @transaction = Transaction.find params[:id]
 
-    if @transaction
+    if @transaction && @transaction.farm == current_farm
       render 'transactions/show'
     else
-      head :not_found
+      render json: {errors: ["Could not find transaction with id #{params[:id]} for this farm"]}, status: :not_found
     end
   end
 
   # GET /transactions/new
-  # GET /transactions/new.json
   def new
     @transaction = Transaction.new
 
@@ -28,7 +25,6 @@ class TransactionsController < ApplicationController
   end
 
   # POST /transactions
-  # POST /transactions.json
   def create
     @transaction = Transaction.new
     @transaction.transaction_type = params[:transaction_type]
@@ -44,7 +40,6 @@ class TransactionsController < ApplicationController
   end
 
   # PATCH/PUT /transactions/1
-  # PATCH/PUT /transactions/1.json
   def update
     @transaction = Transaction.find(params[:id])
 

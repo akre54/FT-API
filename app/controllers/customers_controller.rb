@@ -1,58 +1,58 @@
 class CustomersController < ApplicationController
   # GET /customers
-  # GET /customers.json
   def index
     @current_farm = current_farm
     render "customers/index"
   end
 
   # GET /customers/1
-  # GET /customers/1.json
   def show
     @customer = Customer.find(params[:id])
     @current_farm = current_farm
-    render "customers/show"
+    if @customer && @customer.tabs.find_by_farm_id(@current_farm)
+      render "customers/show"
+    else
+      render json: {errors: ["Could not find customer with id #{params[:id]} for this farm"]}, status: :not_found
+    end
   end
 
   # GET /customers/new
-  # GET /customers/new.json
   def new
     @customer = Customer.new
     render "customers/show"
   end
 
   # POST /customers
-  # POST /customers.json
   def create
-    @customer = Customer.new
+    @customer = Customer.find_by_email params[:email]
     @current_farm = current_farm
 
-    @customer.name = params[:name]
-    @customer.email = params[:email]
-    @customer.crypted_pin = params[:pin] # do something with this
-    @customer.salt = 'hagg1s' # do something with this
+    unless @customer
+      @customer = Customer.new
+      @customer.name = params[:name]
+      @customer.email = params[:email]
+      @customer.password = params[:pin] # do something with this
+    end
 
     if @current_farm.customers << @customer
       render "customers/show", status: :created, location: @customer
     else
-      render json: @customer.errors, status: :unprocessable_entity
+      render json: {errors: @customer.errors}, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /customers/1
-  # PATCH/PUT /customers/1.json
   def update
     @customer = Customer.find(params[:id])
 
     if @customer.update_attributes(params[:customer])
       head :no_content
     else
-      render json: @customer.errors, status: :unprocessable_entity
+      render json: {errors: @customer.errors}, status: :unprocessable_entity
     end
   end
 
   # DELETE /customers/1
-  # DELETE /customers/1.json
   def destroy
     @customer = Customer.find(params[:id])
     @customer.destroy
