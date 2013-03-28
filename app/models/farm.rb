@@ -1,19 +1,15 @@
 class Farm < ActiveRecord::Base
   attr_accessible :farm_name, :email
-
-  has_secure_password
+  attr_accessor :password
+  before_save :encrypt_password
 
   has_many :tabs, dependent: :destroy
   has_many :customers, through: :tabs
   has_many :transactions, through: :customers
 
-  attr_accessor :password
-  before_save :encrypt_password
-
-
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  validates :name, presence: true,
+  validates :farm_name, presence: true,
                    uniqueness: true,
                    length: { within: 1..32 }
 
@@ -23,8 +19,7 @@ class Farm < ActiveRecord::Base
                     format: { with: email_regex }
 
   validates :password, presence: true,
-                       length: { within: 5..255 },
-                       confirmation: true
+                       length: { within: 5..255 }
 
   validates_presence_of :password_confirmation, :if => :password_changed?
 
