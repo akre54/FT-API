@@ -24,8 +24,8 @@ class Farm < ActiveRecord::Base
                        on: :create
 
   validates :password, presence: true,
-                       confirmation: true,
                        length: { :within => 6..128 },
+                       confirmation: true,
                        on: :update,
                        unless: lambda{ |farm| farm.password.to_s.empty? }
 end

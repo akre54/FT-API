@@ -1,7 +1,7 @@
 class Tab < ActiveRecord::Base
   attr_protected :balance
 
-  belongs_to :customer, :inverse_of => :tab
+  belongs_to :customer
   belongs_to :farm
   has_many :transactions
 
