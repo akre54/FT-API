@@ -3,8 +3,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    farm = Farm.authenticate(params[:email], params[:password])
-    if farm
+    farm = Farm.find_by_email(params[:email])
+    if farm && farm.authenticate(params[:password])
       session[:current_farm_id] = farm.id
       redirect_to my_farm
     else
