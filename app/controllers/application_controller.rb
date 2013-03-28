@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::API
     before_filter :set_test_farm
 
-    protect_from_forgery
     force_ssl
 
     private
