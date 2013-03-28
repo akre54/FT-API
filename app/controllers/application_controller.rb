@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::API
-    helper_method :current_farm
     before_filter :set_test_farm
 
     def set_test_farm
@@ -10,4 +9,6 @@ class ApplicationController < ActionController::API
     def current_farm
       @current_farm ||= Farm.find(session[:current_farm_id]) if session[:current_farm_id]
     end
+
+    helper_method :current_farm
 end
