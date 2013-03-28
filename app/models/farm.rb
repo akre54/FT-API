@@ -1,6 +1,8 @@
 class Farm < ActiveRecord::Base
   attr_accessible :farm_name, :email, :password, :password_confirmation
 
+  has_secure_password
+
   has_many :tabs, dependent: :destroy
   has_many :customers, through: :tabs
   has_many :transactions, through: :customers
