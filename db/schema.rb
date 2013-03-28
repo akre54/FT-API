@@ -116,12 +116,12 @@ ActiveRecord::Schema.define(:version => 20130114072229) do
 
   create_table "transactions", :force => true do |t|
     t.string   "receipt_dump"
-    t.decimal  "amount",           :precision => 10, :scale => 2
+    t.decimal  "amount",           :precision => 10, :scale => 2, :null => false
     t.integer  "venue_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "transaction_type"
-    t.integer  "tab_id"
+    t.integer  "tab_id",                                          :null => false
   end
 
   add_index "transactions", ["tab_id"], :name => "index_transactions_on_tab_id"

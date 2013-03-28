@@ -1,6 +1,10 @@
 class ChangeTransactionAmountToFloat < ActiveRecord::Migration
   def up
-    change_column :transactions, :amount, :decimal, precision: 10, scale: 2, null: false
+    connection.execute(%q{
+      alter table transactions
+      alter column amount
+      type decimal(10,2) using cast(amount as decimal)
+    })
   end
 
   def down
