@@ -19,8 +19,13 @@ class Farm < ActiveRecord::Base
                     format: { with: email_regex }
 
   validates :password, presence: true,
-                       length: { within: 5..255 }
+                       length: { within: 6..128 },
+                       confirmation: true,
+                       on: :create
 
-  validates_presence_of :password_confirmation, :if => :password_changed?
-
+  validates :password, presence: true,
+                       confirmation: true,
+                       length: { :within => 6..128 },
+                       on: :update,
+                       unless: lambda{ |farm| farm.password.to_s.empty? }
 end
