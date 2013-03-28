@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130328032550) do
+ActiveRecord::Schema.define(:version => 20130328040934) do
 
   create_table "api_clients", :primary_key => "api_key", :force => true do |t|
     t.string "client_name", :null => false
@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(:version => 20130328032550) do
   create_table "farms", :force => true do |t|
     t.string   "email",                           :null => false
     t.string   "pin",             :default => "", :null => false
-    t.string   "farm_name",                       :null => false
-    t.string   "farm_address",    :default => "", :null => false
+    t.string   "name",                            :null => false
+    t.string   "address",         :default => "", :null => false
     t.string   "description",     :default => "", :null => false
     t.string   "website",         :default => "", :null => false
     t.string   "phone",           :default => "", :null => false
