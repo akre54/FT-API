@@ -1,5 +1,5 @@
 class Farm < ActiveRecord::Base
-  attr_accessible :farm_name, :email, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation
 
   has_secure_password
 
@@ -9,9 +9,9 @@ class Farm < ActiveRecord::Base
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  validates :farm_name, presence: true,
-                        uniqueness: true,
-                        length: { within: 1..32 }
+  validates :name, presence: true,
+                   uniqueness: true,
+                   length: { within: 1..32 }
 
   validates :email, presence: true,
                     uniqueness: true,

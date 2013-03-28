@@ -1,5 +1,5 @@
 object @current_farm
-attributes :id, :farm_name, :email
+attributes :id, :name, :email
 child :customers do
   extends "customers/show"
 end

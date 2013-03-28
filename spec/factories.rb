@@ -1,8 +1,8 @@
-FactoryGirl.define do 
+FactoryGirl.define do
 
   factory :farm do
     email Faker::Internet.email
-    farm_name Faker::Company.name
+    name Faker::Company.name
     pass Faker::Lorem.words 1
     salt Faker::Lorem.words 1
   end
