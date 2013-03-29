@@ -20,9 +20,9 @@ class Transaction < ActiveRecord::Base
   def update_balance
     bal = self.customer.balance self.farm
     if self.transaction_type == 'deposit'
-      self.customer.set_balance(bal + self.amount, self.farm)
+      self.customer.set_balance(self.farm, bal + self.amount)
     else
-      self.customer.set_balance(bal - self.amount, self.farm)
+      self.customer.set_balance(self.farm, bal - self.amount)
     end
   end
 
