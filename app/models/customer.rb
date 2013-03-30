@@ -32,13 +32,13 @@ class Customer < ActiveRecord::Base
 
   # delegate balance to the current tab (relative to farm)
   def balance(farm)
-    tab = self.tabs.find_by_farm(farm)
+    tab = self.tabs.find_by_farm_id(farm)
     tab.balance
   end
 
   # fix this (scope maybe?)
   def set_balance(farm, newAmt)
-    tab = self.tabs.find_by_farm(farm)
+    tab = self.tabs.find_by_farm_id(farm)
     tab.balance = newAmt
     tab.save!
   end

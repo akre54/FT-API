@@ -9,11 +9,15 @@ class Transaction < ActiveRecord::Base
   validates :amount, presence: true,
                      numericality: { greater_than_or_equal_to: 0 }
 
-  validates :transaction_type, presence: true
+  validates :transaction_type, presence: true,
                                inclusion: { in: %w(deposit withdrawal),
                                message: "Transaction type must be either withdrawal or deposit" }
 
-  validate :negative_validator
+  validate do |t|
+    if t.transaction_type == 'withdrawal' && t.customer.balance(t.farm) < t.amount
+      errors.add(:amount, 'cannot be more than customer balance')
+    end
+  end
 
   after_create :update_balance
 
@@ -23,12 +27,6 @@ class Transaction < ActiveRecord::Base
       self.customer.set_balance(self.farm, bal + self.amount)
     else
       self.customer.set_balance(self.farm, bal - self.amount)
-    end
-  end
-
-  def negative_validator
-    if transaction_type == 'withdrawal' && amount > self.customer.balance(self.farm)
-      errors.add(:amount, 'cannot be more than customer balance')
     end
   end
 end
