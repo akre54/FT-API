@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.0.0'
 
 # base
 gem 'rails', '3.2.12'
@@ -20,8 +21,8 @@ end
 
 group :development, :test do
   gem 'pry-rails'
-  gem 'debugger-pry', require: 'debugger/pry'
-  gem 'debugger'
+  gem 'pry-byebug'
+  gem 'byebug'
 end
 
 group :test do
