@@ -7,7 +7,7 @@ class ApplicationController < ActionController::API
 
     def set_test_farm
       puts "NUR FOR TEST!"
-      session[:current_farm_id] = 2
+      session[:current_farm_id] = 1
     end
 
     def current_farm
