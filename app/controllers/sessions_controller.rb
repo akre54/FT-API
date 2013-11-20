@@ -1,7 +1,4 @@
 class SessionsController < ApplicationController
-  def new
-  end
-
   def create
     farm = Farm.find_by_email(params[:email])
     if farm && farm.authenticate(params[:password])
