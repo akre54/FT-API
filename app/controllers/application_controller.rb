@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
     before_filter :set_test_farm
 
-    force_ssl
+    force_ssl unless Rails.env.development?
 
     private
 

@@ -1,5 +1,4 @@
 class Transaction < ActiveRecord::Base
-  attr_accessible :amount
 
   belongs_to :tab
   belongs_to :venue

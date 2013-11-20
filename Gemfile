@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 
 # base
-gem 'rails', '3.2.12'
+gem 'rails', '4.0.1'
 gem 'rails-api'
 gem 'thin'
 
@@ -10,7 +10,7 @@ gem 'thin'
 gem 'rack-cors', require: 'rack/cors'
 
 # for ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.1.2'
 
 # views
 gem 'rabl'
