@@ -53,8 +53,7 @@ class TransactionsController < ApplicationController
   # DELETE /transactions/1
   # DELETE /transactions/1.json
   def destroy
-    @transaction = Transaction.find(params[:id])
-    @transaction.destroy
+    Transaction.find(params[:id]).try(:destroy)
 
     head :no_content
   end
