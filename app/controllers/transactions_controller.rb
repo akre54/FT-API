@@ -17,13 +17,6 @@ class TransactionsController < ApplicationController
     end
   end
 
-  # GET /transactions/new
-  def new
-    @transaction = Transaction.new
-
-    render 'transactions/show'
-  end
-
   # POST /transactions
   def create
     @transaction = Transaction.new
