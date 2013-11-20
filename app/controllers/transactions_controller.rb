@@ -35,7 +35,7 @@ class TransactionsController < ApplicationController
     if @tab.transactions << @transaction
       render 'transactions/show', status: :created, location: @transaction
     else
-      render json: @transaction.errors, status: :unprocessable_entity
+      render json: @transaction.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -46,7 +46,7 @@ class TransactionsController < ApplicationController
     if @transaction.update_attributes(params[:transaction])
       head :no_content
     else
-      render json: @transaction.errors, status: :unprocessable_entity
+      render json: @transaction.errors.full_messages, status: :unprocessable_entity
     end
   end
 

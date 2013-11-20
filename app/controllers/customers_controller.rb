@@ -37,7 +37,7 @@ class CustomersController < ApplicationController
     if @current_farm.customers << @customer
       render "customers/show", status: :created, location: @customer
     else
-      render json: {errors: @customer.errors}, status: :unprocessable_entity
+      render json: {errors: @customer.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
@@ -48,7 +48,7 @@ class CustomersController < ApplicationController
     if @customer.update_attributes(params[:customer])
       head :no_content
     else
-      render json: {errors: @customer.errors}, status: :unprocessable_entity
+      render json: {errors: @customer.errors.full_messages}, status: :unprocessable_entity
     end
   end
 

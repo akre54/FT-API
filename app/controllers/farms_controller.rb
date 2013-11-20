@@ -17,7 +17,7 @@ class FarmsController < ApplicationController
     if @current_farm.save
       render 'farms/show', status: :created, location: @current_farm
     else
-      render json: {errors: @current_farm.errors}, status: :unprocessable_entity
+      render json: {errors: @current_farm.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
@@ -26,7 +26,7 @@ class FarmsController < ApplicationController
     if @current_farm.update_attributes(params[:farm])
       render 'farms/show', status: :accepted, location: @current_farm
     else
-      render json: {errors: @current_farm.errors}, status: :unprocessable_entity
+      render json: {errors: @current_farm.errors.full_messages}, status: :unprocessable_entity
     end
   end
 end
