@@ -6,7 +6,7 @@ gem 'rails-api'
 gem 'thin'
 
 # for cross-origin requests (m.ft.com --> api.ft.com)
-gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-cors', require: 'rack/cors'
 
 # for ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'

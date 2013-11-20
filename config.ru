@@ -4,7 +4,7 @@ require ::File.expand_path('../config/environment',  __FILE__)
 
 use Rack::Cors do
   allow do
-    origins '*'
+    origins 'localhost:3333', 'm.farmtab.com', 'farmtab.com'
     resource '*', headers: :any, methods: [:get, :post, :patch, :put, :delete]
   end
 end
