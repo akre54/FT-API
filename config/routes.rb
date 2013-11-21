@@ -1,16 +1,18 @@
 FTApi::Application.routes.draw do
   resources :sessions
 
-  get 'farms/me', to: 'farms#show_current', as: 'my_farm'
-
   post 'log_in',  to: 'sessions#create',  as: 'log_in'
   post 'log_out', to: 'sessions#destroy', as: 'log_out'
 
-  resources :transactions, except: [:new, :edit, :update]
+  namespace :v1 do
+    get 'farms/me', to: 'farms#show_current', as: 'my_farm'
 
-  resources :customers, except: :edit do
-    resources :transactions, except: [:edit, :update, :delete]
+    resources :transactions, except: [:new, :edit, :update]
+
+    resources :customers, except: :edit do
+      resources :transactions, except: [:edit, :update, :delete]
+    end
   end
 
-  root to: 'farms#show_current'
+  root to: 'v1/farms#show_current'
 end
